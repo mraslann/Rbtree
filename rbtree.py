@@ -20,11 +20,8 @@ class Rbtree:
 
     def insert(self, key):
         node = Node(key)
-        #node.parent = None
-        #node.key = key
         node.left = self.TNULL
         node.right = self.TNULL
-        #node.color = 1  # red
 
         y = None
         x = self.root
@@ -41,17 +38,20 @@ class Rbtree:
             self.root = node
         elif node.item < y.item:
             y.left = node
-        else:
+        elif node.item > y.item:
             y.right = node
+        elif node.item is y.item:
+            print("ERROR: Word already in the dictionary!")
+            return
 
-        if node.parent == None:
+        if node.parent is None:
             node.color = 0
             return
 
-        if node.parent.parent == None:
+        if node.parent.parent is None:
             return
 
-        insertfixup(self,node)
+        insertfixup(self, node)
 
     def search_tree(self, node, key):
         if node == self.TNULL or key == node.item:
@@ -62,17 +62,13 @@ class Rbtree:
         return self.search_tree(node.right, key)
 
     def search(self, k):
-        node=self.search_tree(self.root, k)
-        if node.item==k:
+        node = self.search_tree(self.root, k)
+        if node.item == k:
             print("Node was found")
             print(node.item)
         else:
             print("Node was not found")
         return
-
-
-
-
 
     def left_rotate(self, x):
         y = x.right
