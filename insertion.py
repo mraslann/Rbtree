@@ -21,41 +21,44 @@ def insert(t, z):
         y.right = z
     z.left = t.nil
     z.right = t.nil
-    z.colour = "red"
-    insertfixup(t, z)
+    z.colour = 1
+    insertfixup(t, z)#
 
 
-def insertfixup(t, z):
-    z = rb.Node, x = rb.Node, uncle = rb.Node
-    t = rb.Rbtree
-    while z.parent.colour == "red":
-        if z.parent == z.parent.parent.right:
-            uncle = z.parent.parent.left
-            if uncle.colour == "red":  # recolour
-                z.parent.colour = "black"
-                uncle.colour = "black"
-                z.parent.parent.colour = "red"
-                z = z.parent.parent
-            elif z == z.parent.left:
-                z = z.parent
-                t.right_rotate(z)
-            z.parent.colour = "black"
-            z.parent.parent.colour = "red"
-            t.left_rotate(z.parent.parent)
+def insertfixup(self, k):
+    while k.parent.color == 1:
+        if k.parent == k.parent.parent.right:
+            u = k.parent.parent.left
+            if u.color == 1:
+                u.color = 0
+                k.parent.color = 0
+                k.parent.parent.color = 1
+                k = k.parent.parent
+            else:
+                if k == k.parent.left:
+                    k = k.parent
+                    self.right_rotate(k)
+                k.parent.color = 0
+                k.parent.parent.color = 1
+                self.left_rotate(k.parent.parent)
         else:
-            uncle = z.parent.parent.right
-            if uncle.colour == "red":
-                uncle.colour = "black"
-                z.parent.colour = "black"
-                z.parent.parent.colour = "red"
-                z = z.parent.parent
-            elif z == z.parent.right:
-                z = z.parent
-                t.left_rotate(z)
-            z.parent.colour = "black"
-            z.parent.parent.colour = "red"
-            t.right_rotate(z.parent.parent)
-        if z == t.root:
-            break
+            u = k.parent.parent.right
 
-    t.root.colour = "black"
+            if u.color == 1:
+                u.color = 0
+                k.parent.color = 0
+                k.parent.parent.color = 1
+                k = k.parent.parent
+            else:
+                if k == k.parent.right:
+                    k = k.parent
+                    self.left_rotate(k)
+                k.parent.color = 0
+                k.parent.parent.color = 1
+                self.right_rotate(k.parent.parent)
+        if k == self.root:
+            break
+    self.root.color = 0
+
+
+
