@@ -53,6 +53,27 @@ class Rbtree:
 
         insertfixup(self,node)
 
+    def search_tree(self, node, key):
+        if node == self.TNULL or key == node.item:
+            return node
+
+        if key < node.item:
+            return self.search_tree(node.left, key)
+        return self.search_tree(node.right, key)
+
+    def search(self, k):
+        node=self.search_tree(self.root, k)
+        if node.item==k:
+            print("Node was found")
+            print(node.item)
+        else:
+            print("Node was not found")
+        return
+
+
+
+
+
     def left_rotate(self, x):
         y = x.right
         x.right = y.left
