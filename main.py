@@ -12,10 +12,13 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-   tree =Rbtree();
-   tree.insert(5);
-   tree.insert(2);
-   tree.insert(3);
-   node=tree.root.right
-   print(tree.root.item);
+    counter = 0
+    rb = Rbtree()
+    dictf = open('EN-US-Dictionary.txt', 'r')
+    dictionary = dictf.read().splitlines()
+    for key in dictionary:
+        rb.insert(key)
+        counter = counter+1
+    print(counter)
+    print(rb.treeheight(rb.root))
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -101,3 +101,9 @@ class Rbtree:
             x.parent.left = y
         y.right = x
         x.parent = y
+
+    def treeheight(self, node):
+        if node is None:
+            return -1
+        else:
+            return max(self.treeheight(node.left), self.treeheight(node.right)) + 1
