@@ -30,19 +30,19 @@ class Rbtree:
             y = x
             if node.item < x.item:
                 x = x.left
-            else:
+            elif node.item > x.item:
                 x = x.right
+            else:
+
+                return 2
 
         node.parent = y
-        if y == None:
+        if y is None:          #node is first element
             self.root = node
         elif node.item < y.item:
             y.left = node
         elif node.item > y.item:
             y.right = node
-        elif node.item is y.item:
-            print("ERROR: Word already in the dictionary!")
-            return
 
         if node.parent is None:
             node.color = 0

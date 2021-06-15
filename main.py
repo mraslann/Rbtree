@@ -4,12 +4,6 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from rbtree import Rbtree
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     counter = 0
@@ -18,7 +12,19 @@ if __name__ == '__main__':
     dictionary = dictf.read().splitlines()
     for key in dictionary:
         rb.insert(key)
-        counter = counter+1
-    print(counter)
-    print(rb.treeheight(rb.root))
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        counter = counter + 1
+    print(f'The number of words in the dictionary are {counter}')
+    print(f'The height of the tree is {rb.treeheight(rb.root)}')
+
+operation = input('1-Print dictionary size\n2-Insert a word\n3-Look up a word\n')
+if operation == '1':
+    print(f'The size of the dictionary is {counter}\n')
+elif operation == '2':
+    x = rb.insert(input('Write the word you want to insert\n'))
+    if x == 2:
+        print("ERROR: Word already in the dictionary!")
+    else:
+        print("ERROR: Word inserted")
+
+else:
+    rb.search(input('Write the word you want to search for\n'))
