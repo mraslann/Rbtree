@@ -6,6 +6,7 @@ from rbtree import Rbtree
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    flag = True
     counter = 0
     rb = Rbtree()
     dictf = open('EN-US-Dictionary.txt', 'r')
@@ -15,16 +16,22 @@ if __name__ == '__main__':
         counter = counter + 1
     print(f'The number of words in the dictionary are {counter}')
     print(f'The height of the tree is {rb.treeheight(rb.root)}')
+while flag:
+    operation = input('\n1-Print dictionary size\n2-Insert a word\n3-Look up a word\n4-Any other key to exit\n')
+    if operation == '1':
+        print(f'The size of the dictionary is {counter}\n')
+    elif operation == '2':
+        x = rb.insert(input('Write the word you want to insert\n'))
+        if x == 2:
+            print("ERROR: Word already in the dictionary!")
+        else:
+            print("Word inserted!")
+            counter = counter + 1
+            print(f'The number of words in the dictionary are {counter}')
+            print(f'The height of the tree is {rb.treeheight(rb.root)}')
 
-operation = input('1-Print dictionary size\n2-Insert a word\n3-Look up a word\n')
-if operation == '1':
-    print(f'The size of the dictionary is {counter}\n')
-elif operation == '2':
-    x = rb.insert(input('Write the word you want to insert\n'))
-    if x == 2:
-        print("ERROR: Word already in the dictionary!")
+    elif operation == '3':
+        rb.search(input('Write the word you want to search for\n'))
     else:
-        print("ERROR: Word inserted")
-
-else:
-    rb.search(input('Write the word you want to search for\n'))
+        flag = False
+        break
